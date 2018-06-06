@@ -16,7 +16,7 @@ class TransistorServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->publishes([
-            __DIR__ . '/config/transistor.php' => config_path('transistor.php'),
+            __DIR__ . '/../../config/transistor.php' => config_path('transistor.php'),
         ]);
     }
 
