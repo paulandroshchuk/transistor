@@ -1,8 +1,10 @@
 <?php
 
 return [
-    'twilio' => [
-        'sid'        => '',
-        'auth_token' => '',
+    'gateways' => [
+        'twilio' => [
+            'sid'        => '',
+            'auth_token' => '',
+        ],
     ],
 ];

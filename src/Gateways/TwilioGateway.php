@@ -65,7 +65,7 @@ class TwilioGateway implements Gateway
             ],
         ]);
 
-        $url = sprintf('https://api.twilio.com/2010-04-01/Accounts/%s/Messages.json', $this->config['gateways.twilio.sid']);
+        $url = sprintf('https://api.twilio.com/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, 'gateways.twilio.sid'));
 
         $response = $client->post($url, [
             'form_params' => $formParams
