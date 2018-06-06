@@ -1,5 +1,3 @@
-# Transistor
-
 # Instalation
 For Laravel 5.5
 ```
