@@ -2,6 +2,8 @@
 
 namespace Ypl\Transistor\Gateways;
 
+use Ypl\Transistor\Contracts\Gateway;
+
 class TwilioGateway implements Gateway
 {
     /**

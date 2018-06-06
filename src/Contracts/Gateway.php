@@ -1,6 +1,6 @@
 <?php
 
-namespace Ypl\Transistor\Gateways;
+namespace Ypl\Transistor\Contracts;
 
 interface Gateway
 {

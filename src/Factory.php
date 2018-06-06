@@ -2,8 +2,9 @@
 
 namespace Ypl\Transistor;
 
+use Ypl\Transistor\Contracts\Gateway;
+use Ypl\Transistor\Contracts\Transistor;
 use Ypl\Transistor\Exceptions\NoGatewayFoundException;
-use Ypl\Transistor\Gateways\Gateway;
 use Ypl\Transistor\Gateways\TwilioGateway;
 
 class Factory implements Transistor
