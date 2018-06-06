@@ -57,8 +57,8 @@ class TwilioGateway implements Gateway
                 'Content-Length' => strlen($body),
             ],
             'auth' => [
-                $this->config['gateways.twilio.sid'],
-                $this->config['gateways.twilio.auth_token'],
+                array_get($this->config, 'gateways.twilio.sid'),
+                array_get($this->config, 'gateways.twilio.auth_token'),
             ],
             'curl' => [
                 CURLOPT_RETURNTRANSFER => true,
