@@ -18,7 +18,10 @@
         "laravel": {
             "providers": [
                 "Ypl\\Transistor\\Providers\\TransistorServiceProvider"
-            ]
+            ],
+            "aliases": {
+                "Transistor": "Ypl\\Transistor\\Facade"
+            }
         }
     },
     "require-dev": {
