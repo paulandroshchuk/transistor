@@ -10,6 +10,20 @@ use Ypl\Transistor\Gateways\TwilioGateway;
 class Factory implements Transistor
 {
     /**
+     * @var array
+     */
+    protected $config;
+
+    /**
+     * Factory constructor.
+     * @param array $config
+     */
+    public function __construct(array $config)
+    {
+        $this->config = $config;
+    }
+
+    /**
      * Set a Gateway into the Transistor.
      *
      * @param $gateway
@@ -20,7 +34,7 @@ class Factory implements Transistor
     public function from(string $gateway, string $number): Gateway
     {
         if ($gateway === 'twilio') {
-            return new TwilioGateway($number);
+            return new TwilioGateway($this->config, $number);
         }
 
         throw new NoGatewayFoundException();

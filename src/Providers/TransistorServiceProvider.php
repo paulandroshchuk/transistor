@@ -3,7 +3,7 @@
 namespace Ypl\Transistor\Providers;
 
 use Illuminate\Support\ServiceProvider;
-use Ypl\Transistor\Transistor;
+use Ypl\Transistor\Contracts\Transistor;
 use Ypl\Transistor\Factory;
 
 class TransistorServiceProvider extends ServiceProvider
@@ -25,7 +25,9 @@ class TransistorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Transistor::class, Factory::class);
+        $this->app->singleton(Transistor::class, function () {
+            return new Factory($this->app['config']->get('transistor'));
+        });
     }
 }
 

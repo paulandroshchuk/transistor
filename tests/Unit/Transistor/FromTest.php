@@ -3,7 +3,7 @@
 class FromTest extends \PHPUnit\Framework\TestCase
 {
     /**
-     * @var \Ypl\Transistor\Transistor
+     * @var \Ypl\Transistor\Contracts\Transistor
      */
     protected $transistor;
 
@@ -16,7 +16,7 @@ class FromTest extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
 
-        $this->transistor = new \Ypl\Transistor\Factory();
+        $this->transistor = new \Ypl\Transistor\Factory([]);
     }
 
     /** @test */
