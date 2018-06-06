@@ -13,7 +13,7 @@ composer require ypl/transistor
 ```
 
 # Coming Soon:
-* Add custom gateways
+* Use custom gateways
 ```php
 // Register a gateway
 Transistor::gateway('nexmo', function () {
@@ -25,5 +25,9 @@ Transistor::from('nexmo', '+10000000000')->...
 ```
 * Testing Compatibility
 ```php
-Transistor::shouldSend('twilio', '+10000000000')->withMessage('bla bla');
+Transistor::fake();
+
+// Sending stuff
+
+Transistor::assertSent('twilio', '+10000000000')->withMessage('bla bla');
 ```
