@@ -21,7 +21,7 @@ Transistor::gateway('nexmo', function () {
 });
 
 // Use the gateway
-Transistor::from('nexmo', '+10000000000')...
+Transistor::from('nexmo', '+10000000000')->...
 ```
 * Testing Compatibility
 ```php
