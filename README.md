@@ -23,7 +23,7 @@ Transistor::gateway('nexmo', function () {
 // Use the gateway
 Transistor::from('nexmo', '+10000000000')->...
 ```
-* Testing Compatibility
+* Coming Soon
 ```php
 Transistor::shouldSend('twilio', '+10000000000')->withMessage('bla bla');
 ```
