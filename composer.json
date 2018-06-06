@@ -5,11 +5,13 @@
     "minimum-stability": "dev",
     "prefer-stable": true,
     "require": {
-        "php": ">=7.0"
+        "php": ">=7.0",
+        "guzzlehttp/guzzle": "6.0",
+        "illuminate/support": "^5.6"
     },
     "autoload": {
         "psr-4": {
-            "Ypl\\Transistor\\": "src/"
+            "Ypl\\Transistor\\": "src"
         }
     },
     "extra": {

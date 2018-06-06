@@ -4,10 +4,20 @@ namespace Ypl\Transistor\Providers;
 
 use Illuminate\Support\ServiceProvider;
 use Ypl\Transistor\Transistor;
-use Ypl\Transistor\TransistorFactory;
+use Ypl\Transistor\Factory;
 
 class TransistorServiceProvider extends ServiceProvider
 {
+    /**
+     * Bootstrap services.
+     *
+     * @return void
+     */
+    public function boot()
+    {
+        //
+    }
+
     /**
      * Register services.
      *
@@ -15,7 +25,7 @@ class TransistorServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->app->singleton(Transistor::class, TransistorFactory::class);
+        $this->app->singleton(Transistor::class, Factory::class);
     }
 }
 
