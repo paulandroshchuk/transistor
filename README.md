@@ -12,7 +12,7 @@ For Laravel 5.5
 composer require ypl/transistor
 ```
 
-# TODO:
+# Coming Soon:
 * Add custom gateways
 ```php
 // Register a gateway
@@ -23,7 +23,7 @@ Transistor::gateway('nexmo', function () {
 // Use the gateway
 Transistor::from('nexmo', '+10000000000')->...
 ```
-* Coming Soon
+* Testing Compatibility
 ```php
 Transistor::shouldSend('twilio', '+10000000000')->withMessage('bla bla');
 ```
