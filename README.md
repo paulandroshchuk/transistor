@@ -16,7 +16,9 @@ composer require ypl/transistor
 * Add custom gateways
 ```
 // Register a gateway
-Transistor::gateway('nexmo', function () {});
+Transistor::gateway('nexmo', function () {
+    return new NexmoGateway();
+});
 
 // Use the gateway
 Transistor::from('nexmo', '+10000000000')...
