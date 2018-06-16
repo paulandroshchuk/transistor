@@ -4,8 +4,9 @@ namespace Ypl\Transistor\Tests\Unit\Transistor;
 
 use Ypl\Transistor\Factory;
 use Ypl\Transistor\Tests\Gateways\TestGateway;
+use Ypl\Transistor\Tests\TestCase;
 
-class FromTest extends \PHPUnit\Framework\TestCase
+class FromTest extends TestCase
 {
     /**
      * @var \Ypl\Transistor\Contracts\Transistor
@@ -21,7 +22,7 @@ class FromTest extends \PHPUnit\Framework\TestCase
     {
         parent::setUp();
 
-        $this->transistor = new \Ypl\Transistor\Factory([]);
+        $this->transistor = new \Ypl\Transistor\Factory();
     }
 
     /** @test */

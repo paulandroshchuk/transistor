@@ -2,7 +2,9 @@
 
 namespace Ypl\Transistor\Integration\Twilio;
 
-class SendMessageTest extends \PHPUnit\Framework\TestCase
+use Ypl\Transistor\Tests\TestCase;
+
+class SendMessageTest extends TestCase
 {
     /**
      * @var \Ypl\Transistor\Gateways\TwilioGateway
