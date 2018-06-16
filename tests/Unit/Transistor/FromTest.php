@@ -1,5 +1,10 @@
 <?php
 
+namespace Ypl\Transistor\Tests\Unit\Transistor;
+
+use Ypl\Transistor\Factory;
+use Ypl\Transistor\Tests\Gateways\TestGateway;
+
 class FromTest extends \PHPUnit\Framework\TestCase
 {
     /**
@@ -33,5 +38,15 @@ class FromTest extends \PHPUnit\Framework\TestCase
         $twilio = $this->transistor->from('twilio', '+120000000');
 
         $this->assertInstanceOf(\Ypl\Transistor\Gateways\TwilioGateway::class, $twilio);
+    }
+
+    /** @test */
+    function can_get_a_custom_gateway()
+    {
+        Factory::extend('custom-one', function ($number) {
+            return new TestGateway([], $number);
+        });
+
+        $this->assertInstanceOf(TestGateway::class, $this->transistor->from('custom-one', '+123'));
     }
 }
