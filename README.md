@@ -53,6 +53,6 @@ $responses->each(function (TwilioResponse $response) {
     //
 });
 
-$responses->whereNumber(+10000000001)->getMessageBody(); // Buld Test Message
-$responses->whereNumber(+10000000002)->getMessageBody(); // Unique Text
+$responses->whereNumber('+10000000001')->getMessageBody(); // Bulk Test Message
+$responses->whereNumber('+10000000002')->getMessageBody(); // Unique Text
 ```
