@@ -21,7 +21,7 @@ class TransistorServiceProvider extends ServiceProvider
         ]);
 
         $this->app[Transistor::class]->extend('twilio', function (string $fromNumber) {
-            return new TwilioGateway($this->app['config']->get('transistor.twilio'), $fromNumber);
+            return new TwilioGateway($this->app['config']->get('transistor.gateways.twilio', []), $fromNumber);
         });
     }
 
