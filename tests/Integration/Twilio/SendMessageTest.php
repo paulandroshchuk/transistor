@@ -1,5 +1,7 @@
 <?php
 
+namespace Ypl\Transistor\Integration\Twilio;
+
 class SendMessageTest extends \PHPUnit\Framework\TestCase
 {
     /**
