@@ -5,34 +5,15 @@ namespace Ypl\Transistor;
 use Ypl\Transistor\Contracts\Gateway;
 use Ypl\Transistor\Contracts\Transistor;
 use Ypl\Transistor\Exceptions\NoGatewayFoundException;
-use Ypl\Transistor\Gateways\TwilioGateway;
 
 class Factory implements Transistor
 {
-    /**
-     * @var array
-     */
-    protected $config;
-
     /**
      * A list of gateways.
      *
      * @var array
      */
     protected static $gateways = [];
-
-    /**
-     * Factory constructor.
-     * @param array $config
-     */
-    public function __construct(array $config)
-    {
-        $this->config = $config;
-
-        static::extend('twilio', function ($number) {
-            return new TwilioGateway($this->config, $number);
-        });
-    }
 
     /**
      * Set a Gateway into the Transistor.
