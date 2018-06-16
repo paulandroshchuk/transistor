@@ -6,6 +6,7 @@ use GuzzleHttp\Client;
 use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use Ypl\Transistor\Contracts\Gateway;
+use Ypl\Transistor\Contracts\Response;
 use Ypl\Transistor\Responses\TwilioResponse;
 
 class TwilioGateway implements Gateway
@@ -38,7 +39,7 @@ class TwilioGateway implements Gateway
      * @param string $text
      * @return TwilioResponse
      */
-    public function send(string $recipient, string $text)
+    public function send(string $recipient, string $text): Response
     {
         $formParams = [
             'Body' => $text,
