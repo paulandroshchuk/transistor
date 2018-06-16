@@ -11,7 +11,8 @@
     },
     "autoload": {
         "psr-4": {
-            "Ypl\\Transistor\\": "src"
+            "Ypl\\Transistor\\": "src",
+            "Ypl\\Transistor\\Tests\\": "tests"
         }
     },
     "extra": {
