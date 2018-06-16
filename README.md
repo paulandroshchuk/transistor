@@ -14,11 +14,16 @@ Transistor::from('twilio', '+10000000000')->send('+10000000000', 'Test Message')
 
 Extend Transistor adding&using your own gateways.
 ```php
-// ServiceProvider
-// Register a gateway
-Transistor::extend('nexmo', function (string $senderNumber) {
-    return new NexmoGateway($this->app['config']->get('transistor.gateways.nexmo'), $senderNumber);
-});
+class AppServiceProvider extends ServiceProvider
+{
+    public function boot()
+    {
+        // Register a gateway
+        Transistor::extend('nexmo', function (string $senderNumber) {
+            return new NexmoGateway($this->app['config']->get('transistor.gateways.nexmo'), $senderNumber);
+        });
+    }
+}
 
 // Use the gateway
 Transistor::from('nexmo', '+10000000000')->...
@@ -42,5 +47,12 @@ $recipients = [
     '+10000000003',
 ];
 
-Transistor::from('twilio', '+10000000000')->send($recipients, 'Bulk Test Message');
+$responses = Transistor::from('twilio', '+10000000000')->send($recipients, 'Bulk Test Message');
+
+$responses->each(function (TwilioResponse $response) {
+    //
+});
+
+$responses->whereNumber(+10000000001)->getMessageBody(); // Buld Test Message
+$responses->whereNumber(+10000000002)->getMessageBody(); // Unique Text
 ```
