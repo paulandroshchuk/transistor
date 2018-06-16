@@ -60,9 +60,14 @@ class Factory implements Transistor
      *
      * @param string $gatewayName
      * @param callable $gateway
+     * @throws \Exception
      */
     public static function extend(string $gatewayName, callable $gateway)
     {
+        if (strlen(str_replace(' ', '', $gatewayName)) < 1) {
+            throw new \Exception('Gateway name is invalid.');
+        }
+
         static::$gateways[$gatewayName] = $gateway;
     }
 
