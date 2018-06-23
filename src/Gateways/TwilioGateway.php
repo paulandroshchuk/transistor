@@ -38,6 +38,7 @@ class TwilioGateway implements Gateway
      * @param string $recipient
      * @param string $text
      * @return TwilioResponse
+     * @throws \Ypl\Transistor\Exceptions\InvalidResponseException
      */
     public function send(string $recipient, string $text): Response
     {
@@ -55,15 +56,15 @@ class TwilioGateway implements Gateway
             'handler'  => $stack,
             'timeout'  => 5,
             'auth' => [
-                array_get($this->config, 'gateways.twilio.sid'),
-                array_get($this->config, 'gateways.twilio.auth_token'),
+                array_get($this->config, 'sid'),
+                array_get($this->config, 'auth_token'),
             ],
             'curl' => [
                 CURLOPT_RETURNTRANSFER => true,
             ],
         ]);
 
-        $url = sprintf('/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, 'gateways.twilio.sid'));
+        $url = sprintf('/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, '.sid'));
 
         $response = $client->post($url, [
             'form_params' => $formParams,
