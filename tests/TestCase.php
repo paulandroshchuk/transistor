@@ -12,7 +12,7 @@ class TestCase extends \PHPUnit\Framework\TestCase
         parent::setUp();
 
         Factory::extend('twilio', function (string $fromNumber) {
-            return new TwilioGateway([], $fromNumber);
+            return new TwilioGateway(['sid' => 'sid', 'auth_token' => 'token'], $fromNumber);
         });
     }
 }
