@@ -7,6 +7,7 @@ use GuzzleHttp\Handler\CurlHandler;
 use GuzzleHttp\HandlerStack;
 use Ypl\Transistor\Contracts\Gateway;
 use Ypl\Transistor\Contracts\Response;
+use Ypl\Transistor\Exceptions\NoApiKeyProvidedException;
 use Ypl\Transistor\Responses\TwilioResponse;
 
 class TwilioGateway implements Gateway
@@ -25,11 +26,16 @@ class TwilioGateway implements Gateway
      * TwilioGateway constructor.
      * @param string $fromNumber
      * @param array $config
+     * @throws NoApiKeyProvidedException
      */
     public function __construct(array $config, string $fromNumber)
     {
         $this->config = $config;
         $this->fromNumber = $fromNumber;
+
+        if (! isset($this->config['sid']) || ! isset($this->config['auth_token'])) {
+            throw new NoApiKeyProvidedException();
+        }
     }
 
     /**
