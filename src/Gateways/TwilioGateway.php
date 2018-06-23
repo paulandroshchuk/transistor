@@ -51,12 +51,9 @@ class TwilioGateway implements Gateway
         $stack = new HandlerStack();
         $stack->setHandler(new CurlHandler());
         $client = new Client([
-            'handler' => $stack,
-            'timeout' => 5,
-            'headers' => [
-                'Content-Type' => 'application/x-www-form-urlencoded',
-                'Content-Length' => strlen($body),
-            ],
+            'base_uri' => 'https://api.twilio.com',
+            'handler'  => $stack,
+            'timeout'  => 5,
             'auth' => [
                 array_get($this->config, 'gateways.twilio.sid'),
                 array_get($this->config, 'gateways.twilio.auth_token'),
@@ -66,10 +63,14 @@ class TwilioGateway implements Gateway
             ],
         ]);
 
-        $url = sprintf('https://api.twilio.com/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, 'gateways.twilio.sid'));
+        $url = sprintf('/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, 'gateways.twilio.sid'));
 
         $response = $client->post($url, [
-            'form_params' => $formParams
+            'form_params' => $formParams,
+            'headers'  => [
+                'Content-Type' => 'application/x-www-form-urlencoded',
+                'Content-Length' => strlen($body),
+            ],
         ]);
 
         return new TwilioResponse($response);

@@ -4,6 +4,7 @@ namespace Ypl\Transistor\Responses;
 
 use Psr\Http\Message\ResponseInterface;
 use Ypl\Transistor\Contracts\Response;
+use Ypl\Transistor\Exceptions\InvalidResponseException;
 
 class TwilioResponse implements Response
 {
@@ -15,12 +16,59 @@ class TwilioResponse implements Response
     protected $decodedResponse;
 
     /**
+     * @var ResponseInterface
+     */
+    protected $response;
+
+    /**
      * TwilioResponse constructor.
      * @param ResponseInterface $response
+     * @throws InvalidResponseException
      */
     public function __construct(ResponseInterface $response)
     {
+        $this->response = $response;
         $this->decodedResponse = json_decode($response->getBody(), true);
+
+        $this->validateResponse();
+    }
+
+    /**
+     * Make sure that the valid response is returned.
+     *
+     * @throws InvalidResponseException
+     */
+    protected function validateResponse()
+    {
+        $decodedResponse = $this->getDecodedResponse();
+
+        if (! isset($decodedResponse['sid'])
+            || ! isset($decodedResponse['to'])
+            || ! isset($decodedResponse['from'])
+            || ! isset($decodedResponse['body']))
+        {
+            throw new InvalidResponseException($this->getBaseResponse());
+        }
+    }
+
+    /**
+     * Get base response.
+     *
+     * @return mixed
+     */
+    public function getBaseResponse(): \GuzzleHttp\Psr7\Response
+    {
+        return $this->response;
+    }
+
+    /**
+     * Returns decoded response.
+     *
+     * @return array|mixed
+     */
+    public function getDecodedResponse()
+    {
+        return $this->decodedResponse;
     }
 
     /**
@@ -30,7 +78,7 @@ class TwilioResponse implements Response
      */
     public function getId(): string
     {
-        return $this->decodedResponse['sid'];
+        return $this->getDecodedResponse()['sid'];
     }
 
     /**
@@ -40,7 +88,7 @@ class TwilioResponse implements Response
      */
     public function getRecipientNumber(): string
     {
-        return $this->decodedResponse['to'];
+        return $this->getDecodedResponse()['to'];
     }
 
     /**
@@ -50,7 +98,7 @@ class TwilioResponse implements Response
      */
     public function getSenderNumber(): string
     {
-        return $this->decodedResponse['from'];
+        return $this->getDecodedResponse()['from'];
     }
 
     /**
@@ -60,6 +108,6 @@ class TwilioResponse implements Response
      */
     public function getMessageBody(): string
     {
-        return $this->decodedResponse['body'];
+        return $this->getDecodedResponse()['body'];
     }
 }
