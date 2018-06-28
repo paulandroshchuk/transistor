@@ -70,7 +70,7 @@ class TwilioGateway implements Gateway
             ],
         ]);
 
-        $url = sprintf('/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, '.sid'));
+        $url = sprintf('/2010-04-01/Accounts/%s/Messages.json', array_get($this->config, 'sid'));
 
         $response = $client->post($url, [
             'form_params' => $formParams,
